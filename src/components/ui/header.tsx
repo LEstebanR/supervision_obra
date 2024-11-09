@@ -10,7 +10,7 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50  lg:px-6 py-4 backdrop-blur-sm bg-backgorund border-b border-dashed border-border transition-colors duration-300 h-16 w-full">
+    <header className="fixed top-0 left-0 right-0 z-50  lg:px-6 py-4 backdrop-blur-sm bg-backgorund border-dashed border-border transition-colors duration-300 h-16 w-full border-b-4">
       <div className="container  flex items-center justify-between px-4  mx-auto ">
         <Link className="flex items-center space-x-2" href="/">
           <HardHat className="h-8 w-8 text-primary" />
