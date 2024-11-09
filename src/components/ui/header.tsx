@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { HardHat, Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Button from "@/components/ui/button";
 import CustomLink from "@/components/ui/link";
 import { LANDING_LINKS } from "@/lib/data";
 
@@ -28,12 +28,13 @@ export const Header = () => {
           </div>
           <div className="flex items-center space-x-4">
             <Button
-              variant="ghost"
+              type="icon"
               className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
+              action={() => setIsMenuOpen(!isMenuOpen)}
+              size="sm"
+              icon={<Menu className="h-6 w-6" />}
+              variant="outline"
+            />
           </div>
         </nav>
       </div>

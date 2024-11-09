@@ -19,7 +19,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
   if (type === "icon") {
     return (
       <Link
-        className="font-medium text-textSecondary hover:text-primary transition-colors"
+        className="text-sm text-textSecondary hover:text-primary transition-colors"
         href={href}
         target={target}
       >
@@ -30,7 +30,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
 
   return (
     <Link
-      className="text-sm font-medium text-textSecondary hover:text-primary  transition-colors hover:underline hover:decoration-dashed hover:underline-offset-4 decoration-2 "
+      className="text-lg font-medium text-textSecondary hover:text-primary  transition-colors hover:underline hover:decoration-dashed hover:underline-offset-4 decoration-2 "
       href={href}
       target={target}
     >

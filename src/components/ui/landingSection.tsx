@@ -13,11 +13,15 @@ const LandingSection: React.FC<LandingSectionProps> = ({
   return (
     <section
       className={clsx(
-        "flex flex-col gap-2 items-center min-h-40 justify-center w-screen",
-        { "bg-gradient-to-b from-teal-100 via-blue-100 to-white": background }
+        "min-h-40 w-screen py-12 px-2 text-center flex items-center justify-center",
+        {
+          "bg-gradient-to-b from-teal-100 via-blue-100 to-white": background,
+        }
       )}
     >
-      <div>{children}</div>
+      <div className="flex flex-col gap-8 items-center justify-center w-9/12">
+        {children}
+      </div>
     </section>
   );
 };

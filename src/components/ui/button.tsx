@@ -1,57 +1,84 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import clsx from "clsx";
+import Link from "next/link";
 
-import { cn } from "@/lib/utils"
+type ButtonProps = {
+  children?: React.ReactNode;
+  variant?: "solid" | "outline";
+  color?: "primary" | "secondary";
+  size?: "sm" | "md" | "lg";
+  className?: string;
+  type?: "link" | "icon";
+  href?: string;
+  action?: () => void;
+  icon?: React.ReactNode;
+};
 
-const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
-  {
-    variants: {
-      variant: {
-        default:
-          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
+const defaultClasses =
+  "p-2 rounded-sm border-2 text-lg hover:opacity-80 hover:shadow-lg transition-all duration-300 ";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
-}
+const sizeClasses = {
+  sm: "w-24",
+  md: "w-32",
+  lg: "w-40",
+};
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+const Button: React.FC<ButtonProps> = ({
+  children,
+  variant = "solid",
+  color = "primary",
+  size = "md",
+  className,
+  type,
+  href,
+  action,
+  icon,
+}) => {
+  const variantClasses = {
+    solid: `bg-${color} text-white border-${color}`,
+    outline: `border-${color} text-${color}`,
+  };
+
+  if (type === "link") {
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
+      <Link href={href || ""}>
+        <button
+          className={clsx(
+            defaultClasses,
+            variantClasses[variant],
+            sizeClasses[size],
+            className
+          )}
+        >
+          {children}
+        </button>
+      </Link>
+    );
   }
-)
-Button.displayName = "Button"
 
-export { Button, buttonVariants }
+  if (type === "icon") {
+    return (
+      <button
+        className={clsx(defaultClasses, variantClasses[variant], className)}
+        onClick={action}
+      >
+        {icon}
+      </button>
+    );
+  }
+
+  return (
+    <button
+      className={clsx(
+        defaultClasses,
+        variantClasses[variant],
+        sizeClasses[size],
+        className
+      )}
+      onClick={action}
+    >
+      {children}
+    </button>
+  );
+};
+
+export default Button;
