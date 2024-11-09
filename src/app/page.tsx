@@ -1,7 +1,11 @@
+import LandingSection from "@/components/ui/landingSection";
+
 export default function Home() {
   return (
-    <div className="flex justify-center items-center">
-      <p>Trabajo en proceso...</p>
-    </div>
+    <>
+      <LandingSection background>
+        <p>Trabajo en proceso... AAAA</p>
+      </LandingSection>
+    </>
   );
 }

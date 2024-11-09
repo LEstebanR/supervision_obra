@@ -15,7 +15,7 @@ const SOCIAL_LINKS = [
 
 export const Footer = () => {
   return (
-    <footer className="relative py-6 w-full shrink-0 px-4 md:px-6 border-t border-dashed border-border bg-background backdrop-blur-sm">
+    <footer className="relative py-6 w-full shrink-0 px-4 md:px-6  border-dashed border-border bg-background backdrop-blur-sm border-t-4">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
