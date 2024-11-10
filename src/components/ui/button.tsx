@@ -14,7 +14,7 @@ type ButtonProps = {
 };
 
 const defaultClasses =
-  "p-2 rounded-sm border-2 text-lg hover:opacity-80 hover:shadow-lg transition-all duration-300 ";
+  "p-2 rounded-sm border-2 text-lg hover:opacity-80 hover:shadow-lg transition-all duration-300 font-bold";
 
 const sizeClasses = {
   sm: "w-24",
