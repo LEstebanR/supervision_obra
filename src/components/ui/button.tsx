@@ -34,11 +34,22 @@ const Button: React.FC<ButtonProps> = ({
   icon,
 }) => {
   const variantClasses = {
-    solid: `bg-${color} text-white border-${color}`,
-    outline: `border-${color} text-${color}`,
+    solid: `bg-${color} text-white border-${color} border-2 border-${color}`,
+    outline: `border-${color} text-${color} border-2`,
   };
 
-  if (type === "link") {
+  const colorClasses = {
+    primary: {
+      solid: "bg-primary text-white border-primary",
+      outline: "border-primary text-primary",
+    },
+    secondary: {
+      solid: "bg-secondary text-secondary border-secondary",
+      outline: "border-secondary text-secondary",
+    },
+  };
+
+  if (type == "link") {
     return (
       <Link href={href || ""}>
         <button
@@ -46,7 +57,7 @@ const Button: React.FC<ButtonProps> = ({
             defaultClasses,
             variantClasses[variant],
             sizeClasses[size],
-            className
+            colorClasses[color][variant]
           )}
         >
           {children}
@@ -58,7 +69,12 @@ const Button: React.FC<ButtonProps> = ({
   if (type === "icon") {
     return (
       <button
-        className={clsx(defaultClasses, variantClasses[variant], className)}
+        className={clsx(
+          defaultClasses,
+          variantClasses[variant],
+          colorClasses,
+          className
+        )}
         onClick={action}
       >
         {icon}
@@ -72,6 +88,7 @@ const Button: React.FC<ButtonProps> = ({
         defaultClasses,
         variantClasses[variant],
         sizeClasses[size],
+        colorClasses[color][variant],
         className
       )}
       onClick={action}
